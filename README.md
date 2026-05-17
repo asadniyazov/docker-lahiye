@@ -7,3 +7,6 @@ This project is a Flask-based Task Management application containerized with Doc
 2. **Unit Tests:** Runs pytest suite.
 3. **Lint (flake8):** Ensures code quality checks.
 4. **Package:** Builds the final Docker image.
+
+# Task Manager API
+![CI Pipeline Status](https://github.com/asadniyazov/docker-lahiye/actions/workflows/ci.yml/badge.svg)
