@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Task Manager</title>
+    <style>
+        :root { --primary: #4f46e5; --bg: #f3f4f6; --text: #1f2937; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 50px; }
+        .container { width: 100%; max-width: 500px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: var(--primary); }
+        
+        form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+        input, textarea { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        button.add-btn { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        button.add-btn:hover { background: #4338ca; }
+
+        .note-card { background: #fafafa; border-left: 5px solid var(--primary); padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .note-info h3 { margin: 0; font-size: 18px; }
+        .note-info p { margin: 5px 0 0; font-size: 14px; color: #666; }
+        
+        .actions { display: flex; gap: 10px; }
+        .actions a { text-decoration: none; font-size: 14px; padding: 5px 10px; border-radius: 5px; }
+        .del-link { color: #ef4444; background: #fee2e2; }
+        .upd-link { color: #10b981; background: #d1fae5; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Tapşırıqlar</h1>
+        
+        <form action="/add" method="POST">
+            <input type="text" name="title" placeholder="Başlıq" required>
+            <textarea name="content" placeholder="Ətraflı məlumat..." rows="3" required></textarea>
+            <button type="submit" class="add-btn">Tapşırıq Əlavə Et</button>
+        </form>
+
+        <div class="notes-list">
+            {% for note in notes %}
+            <div class="note-card">
+                <div class="note-info">
+                    <h3>{{ note.title }}</h3>
+                    <p>{{ note.content }}</p>
+                </div>
+                <div class="actions">
+                    <a href="{{ url_for('notes.update_note', id=note.id) }}" class="upd-link">✔</a>
+                    <a href="{{ url_for('notes.delete_note', id=note.id) }}" class="del-link">🗑</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

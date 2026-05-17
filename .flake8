@@ -1,0 +1,10 @@
+[flake8]
+# Müasir ekranlarda bir sətirdə maksimum hərf sayı (standart 79-dur, 100 rahatdır)
+max-line-length = 130
+
+# Bu qovluqları yoxlama, bunlara göz yum:
+exclude = 
+    .git,
+    __pycache__,
+    venv,
+    migrations
